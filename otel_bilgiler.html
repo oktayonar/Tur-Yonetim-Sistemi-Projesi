@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <!-- Bootstrap 4 -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+  <!-- AdminLTE CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.2.0/css/adminlte.min.css"
+    integrity="sha512-IuO+tczf4J43RzbCMEFggCWW5JuX78IrCJRFFBoQEXNvGI6gkUw4OjuwMidiS4Lm9Q2lILzpJwZuMWuSEeT9UQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.2.0/js/adminlte.min.js"
+    integrity="sha512-KBeR1NhClUySj9xBB0+KRqYLPkM6VvXiiWaSz/8LCQNdRpUm38SWUrj0ccNDNSkwCD9qPA4KobLliG26yPppJA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
+  <script type="text/javascript" charset="utf8"
+    src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
+  <title>AdminLTE Sidebar</title>
+
+  <script>
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const otelId = urlParams.get('otel_id');
+
+    fetch('http://localhost:3000/api/getOtellerAd')
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          oteller = data.data; // Otelleri diziye kaydet
+          const otellerElement = document.getElementById("oteller");
+          otellerElement.innerHTML = ""; // Clear the ul element
+
+          oteller.forEach(otel => {
+            let li = document.createElement("li");
+            li.className = "nav-item";
+            let a = document.createElement("a");
+            a.href = "/otel_bilgiler.html?otel_id=" + otel.otel_id;
+            a.className = "nav-link";
+            a.id = otel.otel_id;
+            a.textContent = otel.otel_ad;
+            li.appendChild(a);
+            otellerElement.appendChild(li);
+          });
+        } else {
+          console.error('Sunucu hatası:', data.message);
+        }
+      })
+      .catch(error => console.error('Bir hata oluştu:', error))
+      .finally(() => {
+        const otellerElement = document.getElementById("oteller");
+
+        // Otel Ekle butonu
+        let liOtel = document.createElement("li");
+        liOtel.className = "nav-item";
+        let aOtel = document.createElement("a");
+        aOtel.href = "/otel_ekle.html";
+        aOtel.className = "nav-link";
+        aOtel.textContent = "Otel Ekle";
+        liOtel.appendChild(aOtel);
+        otellerElement.appendChild(liOtel);
+
+        // Oda Ekle butonu
+        let liOda = document.createElement("li");
+        liOda.className = "nav-item";
+        let aOda = document.createElement("a");
+        aOda.href = "/oda_ekle.html"; // Oda ekleme sayfasının URL'si
+        aOda.className = "nav-link";
+        aOda.textContent = "Oda Ekle";
+        liOda.appendChild(aOda);
+        otellerElement.appendChild(liOda);
+
+
+        //oteller.html
+        let liOtelGoruntule = document.createElement("li");
+        liOtelGoruntule.className = "nav-item";
+        let aOtelGoruntule = document.createElement("a");
+        aOtelGoruntule.href = "/oteller.html"; // Otel ekleme sayfasının URL'si
+        aOtelGoruntule.className = "nav-link";
+        aOtelGoruntule.textContent = "Otelleri Sil";
+        liOtelGoruntule.appendChild(aOtelGoruntule);
+        otellerElement.appendChild(liOtelGoruntule);
+      });
+
+
+
+    $(document).ready(function () {
+      const urlParams = new URLSearchParams(window.location.search);
+      const otelId = urlParams.get('otel_id');
+
+      fetch(`http://localhost:3000/api/getOtelById/${otelId}`)
+        .then(response => response.json())
+        .then(data => {
+          if (data.success) {
+            const otel = data.data;
+            const tableBody = document.getElementById('otelTableBody');
+
+            otel.rooms.forEach(room => {
+              const row = document.createElement('tr');
+
+              // Otel Adı
+              const otelAdCell = document.createElement('td');
+              const otelAdLink = document.createElement('a');
+              otelAdLink.textContent = otel.otel_ad;
+              otelAdLink.href = otel.otel_adres; // Use the hotel address directly
+              otelAdLink.target = "_blank"; // Open the link in a new tab
+              otelAdCell.appendChild(otelAdLink);
+              row.appendChild(otelAdCell);
+
+              // Oda Türü
+              const odaTuruCell = document.createElement('td');
+              odaTuruCell.textContent = room.oda_turu;
+              row.appendChild(odaTuruCell);
+
+              // Gecelik Fiyat
+              const odaFiyatiCell = document.createElement('td');
+              odaFiyatiCell.textContent = room.gecelik_fiyat;
+              row.appendChild(odaFiyatiCell);
+
+              // İşlemler
+              const islemlerCell = document.createElement('td');
+              const islemlerLink = document.createElement('button');
+
+              const icon = document.createElement('i');
+              icon.className = "nav-icon fas fa-trash";
+              islemlerLink.appendChild(icon);
+
+              islemlerLink.appendChild(document.createTextNode(" Delete"));
+              islemlerLink.className = "btn btn-danger";
+
+              islemlerCell.appendChild(islemlerLink);
+              islemlerLink.onclick = () => {
+                fetch(`http://localhost:3000/api/getOtelById/${otel.otel_id}/${room.oda_id}`, {
+                  method: 'DELETE'
+                })
+                  .then(response => response.json())
+                  .then(data => {
+                    if (data.success) {
+                      alert("Oda başarıyla silindi.");
+                      location.reload();
+                    } else {
+                      console.error('Sunucu hatası:', data.message);
+                    }
+                  })
+                  .catch(error => console.error('Bir hata oluştu:', error));
+              };
+              row.appendChild(islemlerCell);
+
+              tableBody.appendChild(row);
+            });
+
+            // DataTable initialize
+            $('#otelTable').DataTable({
+              "pageLength": 10
+            });
+          } else {
+            console.error('Sunucu hatası:', data.message);
+          }
+        })
+        .catch(error => console.error('Bir hata oluştu:', error));
+    });
+
+
+  </script>
+</head>
+
+<body class="sidebar-mini layout-fixed sidebar-closed sidebar-collapse" style="height: auto;">
+  <!-- Sidebar -->
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <a href="/index.html" class="brand-link text-center">
+      <img src="/logo.jpg" alt="Beseda Logo" class="brand-image img-circle elevation-5" style="opacity: .8" />
+      <span class="brand-text font-weight-light">Beseda Turizm Ltd Şti</span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar User Panel (optional) -->
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="image">
+          <img src="/patron.jpg" class="img-circle elevation-2" alt="User Image" />
+        </div>
+        <div class="info">
+          <a href="#" class="d-block">Süleyman Sağaltıcı</a>
+        </div>
+      </div>
+
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Rezervasyon Accordion -->
+          <li class="nav-item has-treeview mb-3">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-calendar"></i>
+              <p>
+                Rezervasyon
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <!-- Göster Seçenekleri -->
+              <li class="nav-item">
+                <a href="/rezervasyon_ekle.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Rezervasyon Ekle</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/rezervasyon_goruntule.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Rezervasyon Göster</p>
+                </a>
+              </li>
+              <!-- Diğer Seçenekler Ekleyebilirsiniz -->
+            </ul>
+          </li>
+          <li class="nav-item has-treeview mb-3">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fa-solid fa-calendar-days"></i>
+              <p>
+                Programlar
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <!-- Göster Seçenekleri -->
+              <li class="nav-item">
+                <a href="/program_ekle.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Program Ekle</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/program_goruntule.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Programları Göster</p>
+                </a>
+              </li>
+              <!-- Diğer Seçenekler Ekleyebilirsiniz -->
+            </ul>
+          </li>
+          <li class="nav-item has-treeview mb-3">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fa-solid fa-car"></i>
+              <p>
+                Arabalar
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <!-- Göster Seçenekleri -->
+              <li class="nav-item">
+                <a href="/araba_ekle.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Araba Ekle</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/araba_goruntule.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Arabaları Göster</p>
+                </a>
+              </li>
+              <!-- Diğer Seçenekler Ekleyebilirsiniz -->
+            </ul>
+          </li>
+          <li class="nav-item has-treeview mb-3">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fa-regular fa-id-card"></i>
+              <p>
+                Şoförler
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <!-- Göster Seçenekleri -->
+              <li class="nav-item">
+                <a href="/sofor_ekle.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Şoför Ekle</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/sofor_goruntule.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Şoförleri Göster</p>
+                </a>
+              </li>
+              <!-- Diğer Seçenekler Ekleyebilirsiniz -->
+            </ul>
+          </li>
+          <li class="nav-item has-treeview mb-3">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fa-solid fa-hotel"></i>
+              <p>
+                Otelller
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview" id="oteller">
+              <!-- Göster Seçenekleri -->
+
+              <!-- Diğer Seçenekler Ekleyebilirsiniz -->
+            </ul>
+          </li>
+          <li class="nav-item has-treeview mb-3">
+            <a href="/sikayet_goruntule.html" class="nav-link">
+              <i class="nav-icon fa-solid fa-comment"></i>
+              <p>Şikayetler</p>
+            </a>
+          </li>
+          <li class="nav-item has-treeview mb-3">
+            <a href="/musteriler.html" class="nav-link">
+              <i class="nav-icon fa-solid fa-users"></i>
+              <p>Müşteriler</p>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+  </aside>
+
+
+  <div class="content-wrapper">
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-12 text-center">
+            <h1>Otel-Oda</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section class="content">
+      <div class="container-fluid">
+        <!-- Table -->
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-body">
+                <table id="otelTable" class="table table-bordered table-hover">
+                  <thead>
+                    <tr>
+                      <th>Otel Ad</th>
+                      <th>Oda Türü</th>
+                      <th>Oda Fiyatı</th>
+                      <th>İşlemler</th>
+
+                    </tr>
+                  </thead>
+                  <tbody id="otelTableBody"></tbody>
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+    </section>
+  </div>
+  </div>
+</body>
+
+</html>

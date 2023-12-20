@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Bootstrap 4 -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    <!-- AdminLTE CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.2.0/css/adminlte.min.css"
+        integrity="sha512-IuO+tczf4J43RzbCMEFggCWW5JuX78IrCJRFFBoQEXNvGI6gkUw4OjuwMidiS4Lm9Q2lILzpJwZuMWuSEeT9UQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.2.0/js/adminlte.min.js"
+        integrity="sha512-KBeR1NhClUySj9xBB0+KRqYLPkM6VvXiiWaSz/8LCQNdRpUm38SWUrj0ccNDNSkwCD9qPA4KobLliG26yPppJA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>AdminLTE Sidebar</title>
+    <style>
+        .brand-image {
+            width: 50px;
+            /* Yeni genişlik değeri */
+            height: 50px;
+            /* Yeni yükseklik değeri */
+        }
+    </style>
+
+    <script> </script>
+</head>
+
+<body class="sidebar-mini layout-fixed sidebar-closed sidebar-collapse" style="height: auto;">
+    <div class="wrapper">
+
+        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+            <!-- Brand Logo -->
+            <a href="/index.html" class="brand-link text-center">
+                <img src="/logo.jpg" alt="Beseda Logo" class="brand-image img-circle elevation-5" style="opacity: .8" />
+                <span class="brand-text font-weight-light">Beseda Turizm Ltd Şti</span>
+            </a>
+
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <!-- Sidebar User Panel (optional) -->
+                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                    <div class="image">
+                        <img src="/patron.jpg" class="img-circle elevation-2" alt="User Image" />
+                    </div>
+                    <div class="info">
+                        <a href="#" class="d-block">Süleyman Sağaltıcı</a>
+                    </div>
+                </div>
+
+                <!-- Sidebar Menu -->
+                <nav class="mt-2">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                        data-accordion="false">
+                        <!-- Rezervasyon Accordion -->
+                        <li class="nav-item has-treeview mb-3">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-calendar"></i>
+                                <p>
+                                    Rezervasyon
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <!-- Göster Seçenekleri -->
+                                <li class="nav-item">
+                                    <a href="/rezervasyon_ekle.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Rezervasyon Ekle</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/rezervasyon_goruntule.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Rezervasyon Göster</p>
+                                    </a>
+                                </li>
+                                <!-- Diğer Seçenekler Ekleyebilirsiniz -->
+                            </ul>
+                        </li>
+                        <li class="nav-item has-treeview mb-3">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fa-solid fa-calendar-days"></i>
+                                <p>
+                                    Programlar
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <!-- Göster Seçenekleri -->
+                                <li class="nav-item">
+                                    <a href="/program_ekle.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Program Ekle</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/program_goruntule.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Programları Göster</p>
+                                    </a>
+                                </li>
+                                <!-- Diğer Seçenekler Ekleyebilirsiniz -->
+                            </ul>
+                        </li>
+                        <li class="nav-item has-treeview mb-3">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fa-solid fa-car"></i>
+                                <p>
+                                    Arabalar
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <!-- Göster Seçenekleri -->
+                                <li class="nav-item">
+                                    <a href="/araba_ekle.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Araba Ekle</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/araba_goruntule.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Arabaları Göster</p>
+                                    </a>
+                                </li>
+                                <!-- Diğer Seçenekler Ekleyebilirsiniz -->
+                            </ul>
+                        </li>
+                        <li class="nav-item has-treeview mb-3">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fa-regular fa-id-card"></i>
+                                <p>
+                                    Şoförler
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <!-- Göster Seçenekleri -->
+                                <li class="nav-item">
+                                    <a href="/sofor_ekle.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Şoför Ekle</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/sofor_goruntule.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Şoförleri Göster</p>
+                                    </a>
+                                </li>
+                                <!-- Diğer Seçenekler Ekleyebilirsiniz -->
+                            </ul>
+                        </li>
+                        <li class="nav-item has-treeview mb-3">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fa-solid fa-hotel"></i>
+                                <p>
+                                    Otelller
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview" id="oteller">
+                                <!-- Göster Seçenekleri -->
+
+                                <!-- Diğer Seçenekler Ekleyebilirsiniz -->
+                            </ul>
+                        </li>
+                        <li class="nav-item has-treeview mb-3">
+                            <a href="/sikayet_goruntule.html" class="nav-link">
+                                <i class="nav-icon fa-solid fa-comment"></i>
+                                <p>Şikayetler</p>
+                            </a>
+                        </li>
+                        <li class="nav-item has-treeview mb-3">
+                            <a href="/musteriler.html" class="nav-link">
+                                <i class="nav-icon fa-solid fa-users"></i>
+                                <p>Müşteriler</p>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                <!-- /.sidebar-menu -->
+            </div>
+            <!-- /.sidebar -->
+        </aside>
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <div class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-12 text-center">
+                            <h1>Rezervasyon Ekleme</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Main content -->
+            <section class="content">
+                <div id="step1">
+                    <!-- Step 1: Rezervasyon Bilgileri -->
+                    <h2>Rezervasyon Bilgileri</h2>
+                    <form id="step1Form">
+
+                        <label for="rez_tarih" class="form-label">Rezervasyon Tarih</label>
+                        <input type="date" id="rez_tarih" class="form-control" name="rez_tarih" placeholder="Tarih Ekle"
+                            required />
+
+                        <label for="rez_yapan_ad" class="form-label">Rezervasyon Yapan Ad</label>
+                        <input type="text" id="rez_yapan_ad" name="rez_yapan_ad" class="form-control" placeholder="Ad"
+                            required />
+
+                        <label for="rez_yapan_soyad" class="form-label">Rezervasyon Yapan Soyad</label>
+                        <input type="text" id="rez_yapan_soyad" name="rez_yapan_soyad" class="form-control"
+                            placeholder="Soyad" required />
+
+                        <label for="rez_yapan_tel" class="form-label">Rezervasyon Yapan Telefon</label>
+                        <input type="text" id="rez_yapan_tel" name="rez_yapan_tel" class="form-control"
+                            placeholder="Telefon" required />
+
+                        <label for="kisi_sayi" class="form-label">Kişi Sayısı</label>
+                        <input type="number" id="kisi_sayi" name="kisi_sayi" class="form-control"
+                            placeholder="Kişi Sayısı" required />
+
+                        <label for="otel_adi" class="form-label">Otel Adı:</label>
+                        <select class="form-control" id="otel_adi" required></select>
+
+                        <label for="odaSayisi" class="form-label">Oda Sayısı</label>
+                        <input type="number" id="odaSayisi" name="odaSayisi" class="form-control"
+                            placeholder="Oda Sayısı" required />
+
+                        <label for="program_sayisi" class="form-label">Program Sayısı</label>
+                        <input type="number" id="program_sayisi" name="program_sayisi" class="form-control"
+                            placeholder="Program Sayısı" required />
+
+                        <!-- Diğer rezervasyon bilgileri alanları buraya eklenebilir -->
+
+                        <button type="button" onclick="nextStep(2)">İleri</button>
+                    </form>
+                </div>
+
+                <div id="step2" style="display: none;">
+                    <!-- Step 2: Kişi Bilgileri -->
+                    <h2>Kişi Bilgileri</h2>
+                    <form id="step2Form">
+                        <!-- Kişi bilgileri alanları buraya eklenebilir -->
+
+                        <button type="button" onclick="prevStep(1)">Geri</button>
+                        <button type="button" onclick="nextStep(3)">İleri</button>
+                    </form>
+                </div>
+
+                <div id="step3" style="display: none;">
+                    <!-- Step 3: Otel ve Oda Bilgileri -->
+                    <h2>Otel ve Oda Bilgileri</h2>
+                    <form id="step3Form">
+                        <!-- Otel ve Oda bilgileri alanları buraya eklenebilir -->
+
+                        <button type="button" onclick="prevStep(2)">Geri</button>
+                        <button type="button" onclick="nextStep(4)">İleri</button>
+                    </form>
+                </div>
+
+                <div id="step4" style="display: none;">
+                    <!-- Step 4: Uçuş Bilgileri -->
+                    <h2>Uçuş Bilgileri</h2>
+                    <form id="step4Form">
+                        <!-- Uçuş bilgileri alanları buraya eklenebilir -->
+
+                        <label for="gelis_ucus_no" class="form-label">Geliş Uçus Numarası</label>
+                        <input type="text" id="gelis_ucus_no" class="form-control" name="gelis_ucus_no"
+                            placeholder="Geliş Uçus Numarası Ekle" required />
+
+                        <label for="gidis_ucus_no" class="form-label">Gidiş Uçus Numarası</label>
+                        <input type="text" id="gidis_ucus_no" name="gidis_ucus_no" class="form-control"
+                            placeholder="Gidiş Uçuş Numarası Ekle" required />
+
+                        <label for="gelis_tarih" class="form-label">Geliş Tarihi</label>
+                        <input type="date" id="gelis_tarih" name="gelis_tarih" class="form-control"
+                            placeholder="Geliş Tarihi" required />
+                        <label for="gelis_saati" class="form-label">Geliş Saati</label>
+                        <input type="time" id="gelis_saati" name="gelis_saati" class="form-control"
+                            placeholder="Geliş Saati" required />
+                        <label for="gidis_tarih" class="form-label">Gidiş Tarihi</label>
+                        <input type="date" id="gidis_tarih" name="gidis_tarih" class="form-control"
+                            placeholder="Gidiş Tarihi Ekle" required />
+                        <label for="gidis_saati" class="form-label">Gidiş Saati</label>
+                        <input type="time" id="gidis_saati" name="gidis_saati" class="form-control"
+                            placeholder="Gidiş Saati" required />
+
+
+                        <button type="button" onclick="prevStep(3)">Geri</button>
+                        <button type="button" onclick="nextStep(5)">İleri</button>
+                    </form>
+                </div>
+
+                <div id="step5" style="display: none;">
+                    <!-- Step 5: Program Bilgileri -->
+                    <h2>Program Bilgileri</h2>
+                    <form id="step5Form">
+                        <!-- Program bilgileri alanları buraya eklenebilir -->
+
+                        <button type="button" onclick="prevStep(4)">Geri</button>
+                        <button type="submit">Kaydet</button>
+                    </form>
+                </div>
+            </section>
+        </div>
+
+
+
+    </div>
+
+</body>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"></script>
+<script>
+
+    let oteller = []; // Otelleri saklamak için bir dizi
+    let currentStep = 1;
+    const urlParams = new URLSearchParams(window.location.search);
+
+    const otelId = urlParams.get('otel_id');
+    // Buraya işlemlerinizi ekleyin
+    fetch('http://localhost:3000/api/getOtellerAd')
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                oteller = data.data; // Otelleri diziye kaydet
+                const otellerElement = document.getElementById("oteller");
+                otellerElement.innerHTML = ""; // Clear the ul element
+
+                oteller.forEach(otel => {
+                    let li = document.createElement("li");
+                    li.className = "nav-item";
+                    let a = document.createElement("a");
+                    a.href = "/otel_bilgiler.html?otel_id=" + otel.otel_id;
+                    a.className = "nav-link";
+                    a.id = otel.otel_id;
+                    a.textContent = otel.otel_ad;
+                    li.appendChild(a);
+                    otellerElement.appendChild(li);
+                });
+            } else {
+                console.error('Sunucu hatası:', data.message);
+            }
+        })
+        .catch(error => console.error('Bir hata oluştu:', error));
+
+
+
+
+    fetch('http://localhost:3000/api/getOtellerAd')
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                oteller = data.data; // Otelleri diziye kaydet
+                const otelAdiElement = document.getElementById("otel_adi");
+                otelAdiElement.innerHTML = ""; // Clear the select element
+
+                oteller.forEach(otel => {
+                    let option = document.createElement("option");
+                    option.value = otel.otel_id;
+                    option.text = otel.otel_ad;
+                    otelAdiElement.appendChild(option);
+                });
+
+                // Add the default "Select a hotel" option at the start
+                let defaultOption = document.createElement("option");
+                defaultOption.text = "Otel Seç";
+                defaultOption.value = '';
+                otelAdiElement.prepend(defaultOption);
+                otelAdiElement.value = '';
+            } else {
+                console.error('Sunucu hatası:', data.message);
+            }
+        })
+        .catch(error => console.error('Bir hata oluştu:', error));
+    function loadRoomTypes() {
+        const otelId = document.getElementById('otel_adi').value;
+        const oda_sayisi = document.getElementById('odaSayisi').value; // Oda sayısını al
+
+        for (let i = 1; i <= oda_sayisi; i++) {
+            let odaTuruElement = document.getElementById(`oda_turu${i}`);
+            if (!odaTuruElement) {
+                console.error(`oda_turu${i} elementi bulunamadı.`);
+                continue;
+            }
+
+            // İlk seçenek olarak "Oda Türü Seç" ekleyin
+            let defaultOption = document.createElement("option");
+            defaultOption.text = "Oda Türü Seç";
+            odaTuruElement.innerHTML = ""; // Her değişiklik öncesinde içeriği temizle
+            odaTuruElement.appendChild(defaultOption);
+
+            // Otelin oda türlerini çek
+            const otel = oteller.find(otel => otel.otel_id == otelId);
+            if (otel && otel.rooms) {
+                const odaTurleri = otel.rooms;
+
+                // Oda türlerini select elementine ekle
+                odaTurleri.forEach(oda => {
+                    let option = document.createElement("option");
+                    option.value = oda.oda_id; // oda.oda_id, veritabanından gelen oda ID'si olmalıdır.
+                    option.text = oda.oda_turu; // oda.oda_turu, veritabanından gelen oda türü olmalıdır.
+                    odaTuruElement.appendChild(option);
+
+                    // Set the odaId as a data attribute
+                    option.dataset.odaId = oda.oda_id;
+                });
+            } else {
+                console.error(`Otelin oda bilgileri bulunamadı: ${otelId}`);
+            }
+        }
+    }
+
+
+    function prevStep(step) {
+        document.getElementById(`step${currentStep}`).style.display = "none";
+        currentStep = step;
+        document.getElementById(`step${currentStep}`).style.display = "block";
+    }
+
+    async function nextStep(step) {
+
+        if (step === 2) {
+            const numberOfPeople = document.getElementById('kisi_sayi').value;
+            let formFields = '';
+
+            for (let i = 1; i <= numberOfPeople; i++) {
+                formFields += `
+                    <h2>Müşteri #${i}</h2>
+                    <label for="musteri_ad${i}" class="form-label">Adı:</label>
+                    <input class="form-control" type="text" id="musteri_ad${i}" name="musteri_ad${i}" required>
+                    <label for="musteri_soyad${i}" class="form-label">Soyadı:</label>
+                    <input class="form-control" type="text" id="musteri_soyad${i}" name="musteri_soyad${i}" required>
+                    <label for="uyruk${i}" class="form-label">Uyruk:</label>
+                    <input class="form-control" type="text" id="uyruk${i}" name="uyruk${i}" required>
+                    <label for="musteri_tel${i}" class="form-label">Telefon Numarası:</label>
+                    <input class="form-control" type="tel" id="musteri_tel${i}" name="musteri_tel${i}" placeholder="Örnek: 123-456-7890" required>
+                    <label  for="pasaport_no${i}" class="form-label">Pasaport:</label>
+                    <input class="form-control" type="text" id="pasaport_no${i}" name="pasaport_no${i}" required>
+                `;
+            }
+
+            formFields += `
+                <button type="button" onclick="prevStep(1)">Geri</button>
+                <button type="button" onclick="nextStep(3)">İleri</button>
+            `;
+
+            document.getElementById('step2Form').innerHTML = formFields;
+        } else if (step === 3) {
+
+            const numberOfRooms = document.getElementById('odaSayisi').value;
+            let formFields = '';
+
+            for (let i = 1; i <= numberOfRooms; i++) {
+                formFields += `
+                        <h2>Oda #${i}</h2>
+                        <label for="oda_turu${i}" class="form-label">Oda Türü:</label>
+                        <select class="form-control" id="oda_turu${i}" required></select>
+                        <label for="gecelik_fiyat${i}" class="form-label">Oda Fiyatı:</label>
+                        <input class="form-control" type="text" id="gecelik_fiyat${i}" name="gecelik_fiyat${i}" required>
+                        <label for="gece_sayisi${i}" class="form-label">Gece Sayısı:</label>
+                        <input type="number" id="gece_sayisi${i}" name="gece_sayisi${i}" min="1" class="form-control" required>
+                        <!-- Hidden input for oda_id -->
+                        <input type="hidden" id="odalar[${i - 1}][odaId]" name="odalar[${i - 1}][odaId]" value="">
+                    `;
+            }
+
+            formFields += `
+                    <button type="button" onclick="prevStep(2)">Geri</button>
+                    <button type="button" onclick="nextStep(4)">İleri</button>
+                `;
+
+            document.getElementById('step3Form').innerHTML = formFields;
+
+            loadRoomTypes(numberOfRooms);
+
+
+
+
+
+
+
+        } else if (step === 5) {
+
+            const numberOfPrograms = document.getElementById('program_sayisi').value;
+            let formFields = '';
+
+            // Fetch programs
+            const programsResponse = await fetch('http://localhost:3000/api/getProgramlar');
+            const programsData = await programsResponse.json();
+
+            // Fetch cars
+            const carsResponse = await fetch('http://localhost:3000/api/getArabalar');
+            const carsData = await carsResponse.json();
+
+            for (let i = 1; i <= numberOfPrograms; i++) {
+                formFields += `
+                        <h2>Program #${i}</h2>
+                        <label for="program_ad${i}" class="form-label">Program adı:</label>
+                        <select class="form-control" id="program_ad${i}" required></select>
+                        <label for="program_fiyat${i}" class="form-label">Programın Fiyatı</label>
+                        <p id="program_fiyat${i}" name="program_fiyat${i}"></p>
+                        <label for="plaka${i}" class="form-label">Plaka:</label>
+                        <select class="form-control" id="plaka${i}" required></select>
+                        <label for="programTarih${i}" class="form-label">Program Tarihi:</label>
+                        <input class="form-control" type="date" id="programTarih${i}" name="programTarih${i}" required>
+                        <label for="program_aciklama${i}" class="form-label">Açıklama:</label>
+                        <textarea class="form-control" id="program_aciklama${i}" name="program_aciklama${i}" required></textarea>
+                    `;
+            }
+
+            formFields += `
+                    <button type="button" onclick="prevStep(4)">Geri</button>
+                    <button type="submit"  id="kaydetButton">Kaydet</button>
+                `;
+
+            document.getElementById('step5Form').innerHTML = formFields;
+
+            document.getElementById('kaydetButton').addEventListener('click', function (event) {
+                event.preventDefault(); // Formun varsayılan gönderme işlemini engelle
+                collectFormData(); // Form verilerini topla ve sunucuya gönder
+            });
+            for (let i = 1; i <= numberOfPrograms; i++) {
+                const programSelectElement = document.getElementById(`program_ad${i}`);
+                const carSelectElement = document.getElementById(`plaka${i}`);
+
+                // Add default options
+                const defaultProgramOption = document.createElement('option');
+                defaultProgramOption.text = 'Program Seç';
+                defaultProgramOption.value = '';
+                programSelectElement.appendChild(defaultProgramOption);
+                programSelectElement.value = '';
+
+                const defaultCarOption = document.createElement('option');
+                defaultCarOption.text = 'Araba Seç';
+                defaultCarOption.value = '';
+                carSelectElement.appendChild(defaultCarOption);
+                carSelectElement.value = '';
+
+                // Fill programs
+                programsData.data.forEach((program, index) => {
+                    const programOption = document.createElement('option');
+                    programOption.value = program.program_id;
+                    programOption.text = program.program_ad;
+                    programOption.dataset.price = program.program_fiyat;
+                    programSelectElement.appendChild(programOption);
+                });
+
+
+                // Fill cars
+                carsData.data.forEach((car, index) => {
+                    const carOption = document.createElement('option');
+                    carOption.value = car.plaka;
+                    carOption.text = `${car.plaka} - ${car.model} - ${car.sofor_ad}`;
+                    carSelectElement.appendChild(carOption);
+                });
+
+                programSelectElement.addEventListener('change', (event) => {
+                    const selectedProgramOption = event.target.options[event.target.selectedIndex];
+                    const programPrice = selectedProgramOption.dataset.price;
+
+                    const programPriceElement = document.getElementById(`program_fiyat${i}`);
+                    programPriceElement.textContent = programPrice ? programPrice : '';
+                });
+            }
+
+
+        }
+
+
+
+
+
+        document.getElementById(`step${currentStep}`).style.display = "none";
+        currentStep = step;
+
+        document.getElementById(`step${currentStep}`).style.display = "block";
+    }
+
+
+
+    function collectFormData() {
+
+        const yeni_rezervasyon = {
+            rez_tarih: $("#rez_tarih").val(),
+            kisi_sayi: $("#kisi_sayi").val(),
+            rez_yapan_ad: $("#rez_yapan_ad").val(),
+            rez_yapan_soyad: $("#rez_yapan_soyad").val(),
+            rez_yapan_tel: $("#rez_yapan_tel").val(),
+            musteriler: [],
+            odalar: [],
+            programlar: [],
+            gelis_ucus_no: $(`#gelis_ucus_no`).val(),
+            gidis_ucus_no: $(`#gidis_ucus_no`).val(),
+            gelis_tarih: $(`#gelis_tarih`).val(),
+            gelis_saati: $(`#gelis_saati`).val(),
+            gidis_tarih: $(`#gidis_tarih`).val(),
+            gidis_saati: $(`#gidis_saati`).val()
+        };
+
+        const numberOfPeople = parseInt($("#kisi_sayi").val());
+
+        for (let i = 1; i <= numberOfPeople; i++) {
+            const musteri_ad = $(`#musteri_ad${i}`).val();
+            const musteri_soyad = $(`#musteri_soyad${i}`).val();
+            const uyruk = $(`#uyruk${i}`).val();
+            const musteri_tel = $(`#musteri_tel${i}`).val();
+            const pasaport_no = $(`#pasaport_no${i}`).val();
+
+            yeni_rezervasyon.musteriler.push({
+                musteri_ad,
+                musteri_soyad,
+                uyruk,
+                pasaport_no,
+                musteri_tel
+            });
+        }
+
+        const numberOfRooms = parseInt($("#odaSayisi").val());
+
+        for (let i = 1; i <= numberOfRooms; i++) {
+            const odaId = $(`#oda_turu${i} option:selected`).data('odaId');
+            const odaSayisi = $(`#odaSayisi`).val();
+            const gece_sayisi = $(`#gece_sayisi${i}`).val();
+
+            yeni_rezervasyon.odalar.push({
+                odaId,
+                odaSayisi,
+                gece_sayisi
+            });
+        }
+
+        const numberOfPrograms = parseInt($("#program_sayisi").val());
+
+        for (let i = 1; i <= numberOfPrograms; i++) {
+            const selectedProgramOption = $(`#program_ad${i} option:selected`);
+            const program_id = selectedProgramOption.val();
+            const program_tarih = $(`#programTarih${i}`).val();
+            const program_aciklama = $(`#program_aciklama${i}`).val();
+            const plaka = $(`#plaka${i}`).val();
+
+            yeni_rezervasyon.programlar.push({
+                program_id,
+                plaka,
+                program_tarih,
+                program_aciklama
+            });
+        }
+
+        // Ajax isteği
+        $.ajax({
+            url: "http://localhost:3000/api/kayitOlustur",
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify(yeni_rezervasyon),
+            success: function (response) {
+                console.log(response);
+                alert("Müşteri başarıyla Eklendi");
+            },
+            error: function (error) {
+                console.error(error);
+                alert("Hata");
+            }
+        });
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+
+</html>

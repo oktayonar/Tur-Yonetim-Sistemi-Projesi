@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Bootstrap 4 -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- AdminLTE CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.2.0/css/adminlte.min.css"
+      integrity="sha512-IuO+tczf4J43RzbCMEFggCWW5JuX78IrCJRFFBoQEXNvGI6gkUw4OjuwMidiS4Lm9Q2lILzpJwZuMWuSEeT9UQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.2.0/js/adminlte.min.js"
+      integrity="sha512-KBeR1NhClUySj9xBB0+KRqYLPkM6VvXiiWaSz/8LCQNdRpUm38SWUrj0ccNDNSkwCD9qPA4KobLliG26yPppJA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <!-- Font Awesome Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <title>Document</title>
+  </head>
+  <body>
+    <aside class="main-sidebar sidebar-dark-primary elevation-4">
+      <!-- Brand Logo -->
+      <a href="#" class="brand-link text-center">
+        <span class="brand-text font-weight-light">Beseda Turizm Ltd Şti</span>
+      </a>
+
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <!-- Sidebar User Panel (optional) -->
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+          <div class="image">
+            <img
+              src="https://adminlte.io/themes/v3/dist/img/user2-160x160.jpg"
+              class="img-circle elevation-2"
+              alt="User Image"
+            />
+          </div>
+          <div class="info">
+            <a href="#" class="d-block">User Name</a>
+          </div>
+        </div>
+
+        <!-- Sidebar Menu -->
+        <nav class="mt-2">
+          <ul
+            class="nav nav-pills nav-sidebar flex-column"
+            data-widget="treeview"
+            role="menu"
+            data-accordion="false"
+          >
+            <!-- Rezervasyon Accordion -->
+            <li class="nav-item has-treeview mb-3">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-calendar"></i>
+                <p>
+                  Rezervasyon
+                  <i class="right fas fa-angle-left"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <!-- Göster Seçenekleri -->
+                <li class="nav-item">
+                  <a href="/rezervasyon_ekle.html" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Rezervasyon Ekle</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="/rezervasyon_goruntule.html" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Rezervasyon Göster</p>
+                  </a>
+                </li>
+                <!-- Diğer Seçenekler Ekleyebilirsiniz -->
+              </ul>
+            </li>
+            <li class="nav-item has-treeview mb-3">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fa-solid fa-calendar-days"></i>
+                <p>
+                  Programlar
+                  <i class="right fas fa-angle-left"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <!-- Göster Seçenekleri -->
+                <li class="nav-item">
+                  <a href="/program_ekle.html" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Program Ekle</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="/program_goruntule.html" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Programları Göster</p>
+                  </a>
+                </li>
+                <!-- Diğer Seçenekler Ekleyebilirsiniz -->
+              </ul>
+            </li>
+            <li class="nav-item has-treeview mb-3">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fa-solid fa-car"></i>
+                <p>
+                  Arabalar
+                  <i class="right fas fa-angle-left"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <!-- Göster Seçenekleri -->
+                <li class="nav-item">
+                  <a href="/araba_ekle.html" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Araba Ekle</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="/araba_goruntule.html" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Arabaları Göster</p>
+                  </a>
+                </li>
+                <!-- Diğer Seçenekler Ekleyebilirsiniz -->
+              </ul>
+            </li>
+            <li class="nav-item has-treeview mb-3">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fa-regular fa-id-card"></i>
+                <p>
+                  Şoförler
+                  <i class="right fas fa-angle-left"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <!-- Göster Seçenekleri -->
+                <li class="nav-item">
+                  <a href="/sofor_ekle.html" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Şoför Ekle</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="/sofor_goruntule.html" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Şoförleri Göster</p>
+                  </a>
+                </li>
+                <!-- Diğer Seçenekler Ekleyebilirsiniz -->
+              </ul>
+            </li>
+            <li class="nav-item has-treeview mb-3">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fa-solid fa-hotel"></i>
+                <p>
+                  Otelller
+                  <i class="right fas fa-angle-left"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview" id="oteller">
+                <!-- Göster Seçenekleri -->
+
+                <!-- Diğer Seçenekler Ekleyebilirsiniz -->
+              </ul>
+            </li>
+            <li class="nav-item has-treeview mb-3">
+              <a href="/sikayet_goruntule.html" class="nav-link">
+                <i class="nav-icon fa-solid fa-comment"></i>
+                <p>Şikayetler</p>
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <!-- /.sidebar-menu -->
+      </div>
+      <!-- /.sidebar -->
+    </aside>
+    <div class="content-wrapper">
+      <!-- Content Header (Page header) -->
+      <div class="content-header">
+        <div class="container-fluid">
+          <div class="row mb-2">
+            <div class="col-sm-12 text-center">
+              <h1>Rezervasyon Ekleme Formu</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main content -->
+      <section class="content">
+        <div class="container-fluid">
+          <div class="row justify-content-center">
+            <div class="col-md-6">
+              <div class="card">
+                <div class="card-body">
+                  <form id="firstForm">
+                    <div class="mb-3">
+                      <label for="rez_tarih" class="form-label"
+                        >Rezervasyon Tarih</label
+                      >
+                      <input
+                        type="date"
+                        id="rez_tarih"
+                        class="form-control"
+                        name="rez_tarih"
+                        placeholder="Tarih Ekle"
+                        required
+                      />
+                    </div>
+                    <div class="mb-3">
+                      <label for="rez_yapan_ad" class="form-label"
+                        >Rezervasyon Yapan Ad</label
+                      >
+                      <input
+                        type="text"
+                        id="rez_yapan_ad"
+                        name="rez_yapan_ad"
+                        class="form-control"
+                        placeholder="Ad"
+                        required
+                      />
+                    </div>
+                    <div class="mb-3">
+                      <label for="rez_yapan_soyad" class="form-label"
+                        >Rezervasyon Yapan Soyad</label
+                      >
+                      <input
+                        type="text"
+                        id="rez_yapan_soyad"
+                        name="rez_yapan_soyad"
+                        class="form-control"
+                        placeholder="Soyad"
+                        required
+                      />
+                    </div>
+                    <div class="mb-3">
+                      <label for="rez_yapan_tel" class="form-label"
+                        >Rezervasyon Yapan Telefon</label
+                      >
+                      <input
+                        type="text"
+                        id="rez_yapan_tel"
+                        name="rez_yapan_tel"
+                        class="form-control"
+                        placeholder="Telefon"
+                        required
+                      />
+                    </div>
+                    <div class="mb-3">
+                      <label for="kisi_sayi" class="form-label"
+                        >Kişi Sayısı</label
+                      >
+                      <input
+                        type="number"
+                        id="kisi_sayi"
+                        name="kisi_sayi"
+                        class="form-control"
+                        placeholder="Kişi Sayısı"
+                        required
+                      />
+                    </div>
+                    <div class="mb-3">
+                      <label for="oda_sayisi" class="form-label"
+                        >Oda Sayısı</label
+                      >
+                      <input
+                        type="number"
+                        id="oda_sayisi"
+                        name="oda_sayisi"
+                        class="form-control"
+                        placeholder="Oda Sayısı"
+                        required
+                      />
+                    </div>
+                    <div class="mb-3">
+                      <label for="program_sayisi" class="form-label"
+                        >Program Sayısı</label
+                      >
+                      <input
+                        type="number"
+                        id="program_sayisi"
+                        name="program_sayisi"
+                        class="form-control"
+                        placeholder="Program Sayısı"
+                        required
+                      />
+                    </div>
+                    <input
+                      type="submit"
+                      id="addCustomerInfoButton"
+                      value="Müşteri Bilgisi Ekle"
+                      class="btn btn-block bg-gradient-secondary"
+                    />
+                  </form>
+                  <form id="customerInfoForm"></form>
+                  <form id="roomsInfoForm"></form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const forms = document.querySelectorAll("form");
+
+        const firstForm = forms[0];
+        const customerInfoForm = forms[1];
+        const roomsInfoForm = forms[2];
+
+        document
+          .querySelector("#addCustomerInfoButton")
+          .addEventListener("click", function () {
+            firstForm.style.display = "none";
+            customerInfoForm.style.display = "block";
+            roomsInfoForm.style.display = "block";
+          });
+
+        document
+          .querySelector("#firstForm")
+          .addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            const kisiSayi = document.getElementById("kisi_sayi").value;
+            const container = document.getElementById("customerInfoForm");
+            container.innerHTML = "";
+
+            for (let i = 1; i <= kisiSayi; i++) {
+              const customerDiv = document.createElement("div");
+              customerDiv.innerHTML = `
+          <h2>Müşteri #${i}</h2>
+          <label for="musteriAd${i}" class="form-label">Müşteri Adı:</label>
+          <input type="text" id="musteriAd${i}" name="musteriAd${i}" class="form-control" required>
+          <label for="musteriSoyad${i}" class="form-label">Müşteri Soyadı:</label>
+          <input type="text" id="musteriSoyad${i}" name="musteriSoyad${i}" class="form-control" required>
+          <label for="musteriUyruk${i}" class="form-label">Müşterinin Uyruğu:</label>
+          <input type="text" id="musteriUyruk${i}" name="musteriUyruk${i}" class="form-control" required>
+          <label for="musteriPasaport${i}" class="form-label">Müşterinin Pasaport Numarası:</label>
+          <input type="text" id="musteriPasaport${i}" name="musteriPasaport${i}" class="form-control" required>
+          <label for="musteriTel${i}" class="form-label">Müşterinin Telefon Numarası:</label>
+          <input type="text" id="musteriTel${i}" name="musteriTel${i}" class="form-control" required>
+          <input type="submit" id="addRoomsInfoButton" class="btn btn-block bg-gradient-secondary" required>
+        `;
+              container.appendChild(customerDiv);
+              const addRoomsInfoButton =
+                customerDiv.querySelector(`#addRoomsInfoButton`);
+              addRoomsInfoButton.addEventListener("click", function () {
+                customerInfoForm.style.display = "none";
+                firstForm.style.display = "none";
+                roomsInfoForm.style.display = "block";
+              });
+            }
+          });
+
+        document
+          .querySelector("#customerInfoForm")
+          .addEventListener("submit", function (e) {
+            const odaSayi = document.getElementById("oda_sayisi").value;
+            const container2 = document.getElementById("roomsInfoForm");
+            container2.innerHTML = "";
+
+            for (let i = 1; i <= odaSayi; i++) {
+              const customerDiv = document.createElement("div");
+              customerDiv.innerHTML = `
+          <h2>Oda #${i}</h2>
+          <label for="musteriAd${i}" class="form-label">Otel Adı:</label>
+          <input type="text" id="musteriAd${i}" name="musteriAd${i}" class="form-control" required>
+          <label for="musteriSoyad${i}" class="form-label">Müşteri Soyadı:</label>
+          <input type="text" id="musteriSoyad${i}" name="musteriSoyad${i}" class="form-control" required>
+          <label for="musteriUyruk${i}" class="form-label">Müşterinin Uyruğu:</label>
+          <input type="text" id="musteriUyruk${i}" name="musteriUyruk${i}" class="form-control" required>
+          <label for="musteriPasaport${i}" class="form-label">Müşterinin Pasaport Numarası:</label>
+          <input type="text" id="musteriPasaport${i}" name="musteriPasaport${i}" class="form-control" required>
+          <label for="musteriTel${i}" class="form-label">Müşterinin Telefon Numarası:</label>
+          <input type="text" id="musteriTel${i}" name="musteriTel${i}" class="form-control" required>
+          <input type="submit" id="addUcusInfoButton" class="btn btn-block bg-gradient-secondary" class="form-control" required>
+        `;
+              container2.appendChild(customerDiv);
+            }
+          });
+      });
+    </script>
+  </body>
+</html>

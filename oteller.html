@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap 4 -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- AdminLTE CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.2.0/css/adminlte.min.css"
+        integrity="sha512-IuO+tczf4J43RzbCMEFggCWW5JuX78IrCJRFFBoQEXNvGI6gkUw4OjuwMidiS4Lm9Q2lILzpJwZuMWuSEeT9UQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.2.0/js/adminlte.min.js"
+        integrity="sha512-KBeR1NhClUySj9xBB0+KRqYLPkM6VvXiiWaSz/8LCQNdRpUm38SWUrj0ccNDNSkwCD9qPA4KobLliG26yPppJA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8"
+        src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
+
+    <script>
+
+        let oteller = []; // Otelleri tutacak dizi
+
+        function updateArabaTable() {
+            fetch('http://localhost:3000/api/getOteller')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        oteller = data.data; // Otelleri diziye kaydet
+                        const otellerTableBody = document.getElementById("otellerTableBody");
+                        otellerTableBody.innerHTML = ""; // Clear the table body
+
+                        oteller.forEach(otel => {
+                            let tr = document.createElement("tr");
+
+                            let tdOtelId = document.createElement("td");
+                            let aOtelId = document.createElement("a");
+                            aOtelId.href = "/otel_bilgiler.html?otel_id=" + otel.otel_id;
+                            aOtelId.textContent = otel.otel_id;
+                          
+                            tdOtelId.appendChild(aOtelId);
+
+                            let tdOtelAd = document.createElement("td");
+                            tdOtelAd.textContent = otel.otel_ad;
+
+                            let tdOtelAdres = document.createElement("td");
+                            let aOtelAdres = document.createElement("a");
+                            aOtelAdres.href = otel.otel_adres; // Adresi Google Haritalar'da göster
+                            aOtelAdres.textContent = otel.otel_adres.substring(0, 20) + "..."; // Adresin ilk 20 karakterini göster
+                            aOtelAdres.target = "_blank"; // Linki yeni sekmede aç
+                            tdOtelAdres.appendChild(aOtelAdres);
+                            let tdDelete = document.createElement("td");
+                            let btnDelete = document.createElement("button");
+                      
+                            btnDelete.onclick = function () {
+                                if (confirm('Bu oteli silmek istediğinize emin misiniz?')) {
+                                    fetch('http://localhost:3000/api/deleteOteller/' + otel.otel_id, {
+                                        method: 'DELETE'
+                                    })
+                                        .then(response => response.json())
+                                        .then(data => {
+                                            if (data.success) {
+                                                // Otel başarıyla silindi, tabloyu yeniden yükle
+                                                updateArabaTable();
+                                            } else {
+                                                console.error('Sunucu hatası:', data.message);
+                                            }
+                                        })
+                                        .catch(error => console.error('Bir hata oluştu:', error));
+                                }
+                            };
+
+                            btnDelete.className = "btn btn-danger";
+
+                            let icon = document.createElement("i");
+                            icon.className = "nav-icon fas fa-trash";
+                            btnDelete.appendChild(icon);
+
+                            let textNode = document.createTextNode(" Delete");
+                            btnDelete.appendChild(textNode)
+                            tdDelete.appendChild(btnDelete);
+
+                            tr.appendChild(tdOtelId);
+                            tr.appendChild(tdOtelAd);
+                            tr.appendChild(tdOtelAdres);
+                            tr.appendChild(tdDelete); // Sil düğmesini tabloya ekle
+
+                            otellerTableBody.appendChild(tr);
+                        });
+                    } else {
+                        console.error('Sunucu hatası:', data.message);
+                    }
+                })
+                .catch(error => console.error('Bir hata oluştu:', error))
+                .finally(() => {
+                    $('#arabaTable').DataTable();
+                });
+        }
+
+        $(document).ready(function () {
+
+
+            const urlParams = new URLSearchParams(window.location.search);
+            const otelId = urlParams.get('otel_id');
+
+            fetch('http://localhost:3000/api/getOtellerAd')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        oteller = data.data; // Otelleri diziye kaydet
+                        const otellerElement = document.getElementById("oteller");
+                        otellerElement.innerHTML = ""; // Clear the ul element
+
+                        oteller.forEach(otel => {
+                            let li = document.createElement("li");
+                            li.className = "nav-item";
+                            let a = document.createElement("a");
+                            a.href = "/otel_bilgiler.html?otel_id=" + otel.otel_id;
+                            a.className = "nav-link";
+                            a.id = otel.otel_id;
+                            a.textContent = otel.otel_ad;
+                            li.appendChild(a);
+                            otellerElement.appendChild(li);
+                        });
+                    } else {
+                        console.error('Sunucu hatası:', data.message);
+                    }
+                })
+                .catch(error => console.error('Bir hata oluştu:', error))
+                .finally(() => {
+                    const otellerElement = document.getElementById("oteller");
+
+                    // Otel Ekle butonu
+                    let liOtel = document.createElement("li");
+                    liOtel.className = "nav-item";
+                    let aOtel = document.createElement("a");
+                    aOtel.href = "/otel_ekle.html";
+                    aOtel.className = "nav-link";
+                    aOtel.textContent = "Otel Ekle";
+                    liOtel.appendChild(aOtel);
+                    otellerElement.appendChild(liOtel);
+
+                    // Oda Ekle butonu
+                    let liOda = document.createElement("li");
+                    liOda.className = "nav-item";
+                    let aOda = document.createElement("a");
+                    aOda.href = "/oda_ekle.html"; // Oda ekleme sayfasının URL'si
+                    aOda.className = "nav-link";
+                    aOda.textContent = "Oda Ekle";
+                    liOda.appendChild(aOda);
+                    otellerElement.appendChild(liOda);
+
+                    //oteller.html
+                    let liOtelGoruntule = document.createElement("li");
+                    liOtelGoruntule.className = "nav-item";
+                    let aOtelGoruntule = document.createElement("a");
+                    aOtelGoruntule.href = "/oteller.html"; // Otel ekleme sayfasının URL'si
+                    aOtelGoruntule.className = "nav-link";
+                    aOtelGoruntule.textContent = "Otelleri Sil";
+                    liOtelGoruntule.appendChild(aOtelGoruntule);
+                    otellerElement.appendChild(liOtelGoruntule);
+
+                });
+
+
+
+            // Initial updates on page load
+            updateArabaTable();
+
+        });
+    </script>
+
+    <title>Document</title>
+</head>
+
+<body class="sidebar-mini layout-fixed sidebar-closed sidebar-collapse" style="height: auto;">
+
+    <!-- Sidebar -->
+    <aside class="main-sidebar sidebar-dark-primary elevation-4">
+        <a href="/index.html" class="brand-link text-center">
+            <img src="/logo.jpg" alt="Beseda Logo" class="brand-image img-circle elevation-5" style="opacity: .8" />
+            <span class="brand-text font-weight-light">Beseda Turizm Ltd Şti</span>
+        </a>
+
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <!-- Sidebar User Panel (optional) -->
+            <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                <div class="image">
+                    <img src="/patron.jpg" class="img-circle elevation-2" alt="User Image" />
+                </div>
+                <div class="info">
+                    <a href="#" class="d-block">Süleyman Sağaltıcı</a>
+                </div>
+            </div>
+
+            <!-- Sidebar Menu -->
+            <nav class="mt-2">
+                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                    data-accordion="false">
+                    <!-- Rezervasyon Accordion -->
+                    <li class="nav-item has-treeview mb-3">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-calendar"></i>
+                            <p>
+                                Rezervasyon
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <!-- Göster Seçenekleri -->
+                            <li class="nav-item">
+                                <a href="/rezervasyon_ekle.html" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Rezervasyon Ekle</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/rezervasyon_goruntule.html" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Rezervasyon Göster</p>
+                                </a>
+                            </li>
+                            <!-- Diğer Seçenekler Ekleyebilirsiniz -->
+                        </ul>
+                    </li>
+                    <li class="nav-item has-treeview mb-3">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fa-solid fa-calendar-days"></i>
+                            <p>
+                                Programlar
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <!-- Göster Seçenekleri -->
+                            <li class="nav-item">
+                                <a href="/program_ekle.html" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Program Ekle</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/program_goruntule.html" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Programları Göster</p>
+                                </a>
+                            </li>
+                            <!-- Diğer Seçenekler Ekleyebilirsiniz -->
+                        </ul>
+                    </li>
+                    <li class="nav-item has-treeview mb-3">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fa-solid fa-car"></i>
+                            <p>
+                                Arabalar
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <!-- Göster Seçenekleri -->
+                            <li class="nav-item">
+                                <a href="/araba_ekle.html" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Araba Ekle</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/araba_goruntule.html" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Arabaları Göster</p>
+                                </a>
+                            </li>
+                            <!-- Diğer Seçenekler Ekleyebilirsiniz -->
+                        </ul>
+                    </li>
+                    <li class="nav-item has-treeview mb-3">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fa-regular fa-id-card"></i>
+                            <p>
+                                Şoförler
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <!-- Göster Seçenekleri -->
+                            <li class="nav-item">
+                                <a href="/sofor_ekle.html" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Şoför Ekle</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/sofor_goruntule.html" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Şoförleri Göster</p>
+                                </a>
+                            </li>
+                            <!-- Diğer Seçenekler Ekleyebilirsiniz -->
+                        </ul>
+                    </li>
+                    <li class="nav-item has-treeview mb-3">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fa-solid fa-hotel"></i>
+                            <p>
+                                Otelller
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview" id="oteller">
+                            <!-- Göster Seçenekleri -->
+
+
+                            <!-- Diğer Seçenekler Ekleyebilirsiniz -->
+                        </ul>
+                    </li>
+                    <li class="nav-item has-treeview mb-3">
+                        <a href="/sikayet_goruntule.html" class="nav-link">
+                            <i class="nav-icon fa-solid fa-comment"></i>
+                            <p>Şikayetler</p>
+                        </a>
+                    </li>
+                    <li class="nav-item has-treeview mb-3">
+                        <a href="/musteriler.html" class="nav-link">
+                            <i class="nav-icon fa-solid fa-users"></i>
+                            <p>Müşteriler</p>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <!-- /.sidebar-menu -->
+        </div>
+        <!-- /.sidebar -->
+    </aside>
+
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-12 text-center">
+                        <h1>Arabalar</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row justify-content-center">
+                    <div class="col-md-10">
+                        <div class="card">
+                            <div class="card-body p-4">
+                                <table class="table table-bordered table-hover" id="arabaTable">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Oteller ID</th>
+                                            <th scope="col">Oteller Ad</th>
+                                            <th scope="col">Oteller Adres</th>
+                                            <th scope="col">İşlemler</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="otellerTableBody">
+                                        <!-- Buraya JS ile dinamik olarak satırlar ekleyebilirsiniz -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+
+
+</body>
+
+</html>
