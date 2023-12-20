@@ -798,15 +798,15 @@ const registerSikayet2 = async (req, res) => {
               const transporter = nodemailer.createTransport({
                 service: "gmail",
                 auth: {
-                  user: "63furkan27@gmail.com",
-                  pass: "conh wjlq icbg cehh",
+                  user: "Your mail",
+                  pass: "your password",
                 },
               });
 
               // Define the email options
               const mailOptions = {
-                from: "63furkan27@gmail.com",
-                to: "63furkan27@gmail.com",
+                from: "Your mail",
+                to: "Your mail",
                 subject: "New Sikayet Form Submission",
                 html: `
                   <p><strong>Name:</strong> ${musteri_ad}</p>
